@@ -5,7 +5,13 @@ const useSignup = () => {
     const { isPending, isSuccess, error, mutateAsync } = useMutation({
         mutationFn:signUpRequest,
         onSuccess:(data) => {
-            console.log("successfull signUp" , data);
+            if (data.success == false) {
+                console.log(data);
+                throw new Error(data.message);
+            }
+            else {
+                console.log(data);
+            }
         },
         onError:(error) => {
             console.log("Sign uop failed" , error);
