@@ -9,7 +9,7 @@ export function AuthContextProvider({children}){
     })
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-        const Token = JSON.getItem('Token');
+        const Token = localStorage.getItem('Token');
         if(user && Token){
             setAuth({
                 user,
@@ -25,4 +25,4 @@ export function AuthContextProvider({children}){
     )
 }
 
-return Authcontext;
+export default Authcontext;
