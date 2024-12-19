@@ -4,13 +4,17 @@ import { useMutation }from "@tanstack/react-query";
 function useSignIn(){
     const { isPending, isSuccess, error, mutateAsync } = useMutation({
         mutationFn: signinRequest,
-        onSuccess: (data) => {
-            if(data.success == false){
-                console.log(data);
-                throw new Error( data.message);
+        onSuccess: (response) => {
+            if(response.success == false){
+                console.log(response);
+                throw new Error( response.message);
             }
             else{
-                console.log(data);
+                localStorage.setItem('Token' , response.data.token);
+                const userObject = JSON.stringify(response.data);
+                localStorage.setItem('user' , userObject);
+
+                console.log(response);
             }
         },
         onError: (data) => {

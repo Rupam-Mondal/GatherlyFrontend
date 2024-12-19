@@ -33,7 +33,9 @@ function SignInCard() {
 
     }
     useEffect(() => {
-        console.log(isSuccess)
+        if(isSuccess){
+            navigate('/home');
+        }
     }, [isSuccess, navigate]);
     return (
         <>
