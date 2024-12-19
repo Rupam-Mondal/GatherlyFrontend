@@ -3,11 +3,19 @@ import { useAuth } from "@/hooks/useAuth";
 import { useContext } from "react";
 
 function Home(){
-    const obj =  useAuth();
+    const {auth , setAuth} =  useAuth();
     return (
-        <div className="h-[100vh] w-full bg-zinc-600" onClick={() => {
-            console.log(obj);
-        }}>click</div>
+        <>
+            <div className="h-[100vh] bg-zinc-500">
+                <div onClick={() => {
+                    console.log(auth)
+                }}>click</div>
+                <div className="h-20 w-20 bg-white">
+                    <img src={auth.user.avatar} alt="" />
+                </div>
+            </div>
+        </>
+        
     )
 }
 
