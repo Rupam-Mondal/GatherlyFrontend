@@ -21,22 +21,17 @@ function SignInCard() {
             setValidationError({ message: "All fields are required" });
             return;
         }
-        try {
-            await Signinmutation({
-                email: signUpform.email,
-                username: signUpform.username,
-                password: signUpform.password
-            })
-        } catch (error) {
-            console.log(error)
-        }
-
+        await Signinmutation({
+            email: signUpform.email,
+            username: signUpform.username,
+            password: signUpform.password
+        })
     }
     useEffect(() => {
         if(isSuccess){
             navigate('/home');
         }
-    }, [isSuccess, navigate]);
+    } , [isSuccess , navigate])
     return (
         <>
             <Card className="w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 shadow-xl text-white rounded-md">
