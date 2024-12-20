@@ -7,9 +7,22 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LogOutIcon, Settings2Icon } from "lucide-react";
 import { IoPersonOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
-function UserButton({auth}){
+function UserButton({auth , setAuth}){
+    const navigate = useNavigate();
+    function logout(){
+        localStorage.removeItem('user');
+        localStorage.removeItem('Token');
+        setAuth({
+            user: null,
+            Token: null,
+            isLoading: true
+        });
+        navigate('/auth/signin');
+    }
     return (
         <>
             <DropdownMenu >
@@ -19,13 +32,11 @@ function UserButton({auth}){
                         <AvatarFallback><IoPersonOutline /></AvatarFallback>
                     </Avatar>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
+                <DropdownMenuContent className="select-none">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer"><Settings2Icon/>Settings</DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer" onClick={logout}> <LogOutIcon/>Log out</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </>

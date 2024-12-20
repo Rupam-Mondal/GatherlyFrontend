@@ -8,7 +8,9 @@ function Home() {
     return (
         <>
             <div className="h-[100vh] bg-zinc-500">
-                <UserButton auth={auth}/>
+                <UserButton
+                    auth={auth}
+                    setAuth={setAuth} />
             </div>
         </>
 
