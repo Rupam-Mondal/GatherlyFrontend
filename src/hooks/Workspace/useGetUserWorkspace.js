@@ -6,7 +6,7 @@ export function useGetuserWorkspace(){
         queryFn:() => {
             GetWorkspaceByUserId(localStorage.getItem('Token'));
         },
-        queryKey:'fetchworkspace',
+        queryKey:['fetchworkspace'],
         staleTime:30000
     });
     return {
