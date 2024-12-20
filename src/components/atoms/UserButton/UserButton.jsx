@@ -7,12 +7,15 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/hooks/use-toast";
 import { LogOutIcon, Settings2Icon } from "lucide-react";
 import { IoPersonOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
 function UserButton({auth , setAuth}){
     const navigate = useNavigate();
+    const { toast } = useToast()
     function logout(){
         localStorage.removeItem('user');
         localStorage.removeItem('Token');
@@ -22,6 +25,9 @@ function UserButton({auth , setAuth}){
             isLoading: true
         });
         navigate('/auth/signin');
+        toast({
+            title: "Logged out successfully",
+        })
     }
     return (
         <>

@@ -8,6 +8,7 @@ import { Notfound } from "./pages/Nofoundpage"
 import Home from "./pages/Home/Home"
 import { AppcontextProvider } from "./context/AppContext"
 import { ProtectedRoute } from "./components/molecules/ProtectedRoutes"
+import { Toaster } from "./components/ui/toaster"
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path="/*" element={<Notfound />} />
         </Routes>
+        <Toaster/>
         </AppcontextProvider>
       </QueryClientProvider>
   )
