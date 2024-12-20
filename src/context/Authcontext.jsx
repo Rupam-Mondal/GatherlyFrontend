@@ -7,7 +7,7 @@ export function AuthContextProvider({ children }) {
         user: null,
         Token: null,
         isLoading: true
-    })
+    });
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
         const Token = localStorage.getItem('Token');
