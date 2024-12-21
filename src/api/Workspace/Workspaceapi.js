@@ -16,3 +16,17 @@ export async function GetWorkspaceByUserId() {
         console.log(error);
     }
 }
+export async function creatWorkspace(workspaceObject){
+    try {
+        const Token = localStorage.getItem('Token');
+        const response = await axiosInstance.post('/workspace/createworkspace' , workspaceObject , {
+            headers:{
+                'x-access-token': Token
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
