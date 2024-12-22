@@ -1,4 +1,10 @@
+import { useCreateWorkspace } from "@/hooks/useCreateworkspace";
+
 function Allworkspace({ data, isFetching }) {
+    const { openBox, setOpenBox } = useCreateWorkspace();
+    async function createWorkspace(){
+        setOpenBox(true);
+    }
     return (
         <div className="p-6 rounded-lg shadow-lg w-full max-w-xl flex flex-col items-center bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
             <h2 className="text-white text-2xl font-semibold mb-4">Workspaces</h2>
@@ -16,7 +22,7 @@ function Allworkspace({ data, isFetching }) {
                     ))}
                 </div>
             )}
-            <button className="mt-6 px-6 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-500 transition">
+            <button className="mt-6 px-6 py-2 bg-purple-600 text-white rounded-lg shadow hover:bg-purple-500 transition" onClick={createWorkspace}>
                 + Create Workspace
             </button>
         </div>
