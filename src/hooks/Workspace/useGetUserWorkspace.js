@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 export function useGetuserWorkspace(){
     const {isFetching , isSuccess , error , data} = useQuery({
         queryFn:() => {
-            GetWorkspaceByUserId(localStorage.getItem('Token'));
+            return GetWorkspaceByUserId(localStorage.getItem('Token'));
         },
         queryKey:['fetchworkspace'],
         staleTime:30000
