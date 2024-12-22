@@ -8,18 +8,23 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { useCreateWorkspace } from "@/hooks/useCreateworkspace";
+import { useCreateWorkspaceApi } from "@/hooks/Workspace/useCreateworkspaceApi";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Modals() {
-    const { openBox, setOpenBox } = useCreateWorkspace();
-    const [workspaceName, setWorkspaceName] = useState("");
-    const [workspaceDescription, setWorkspaceDescription] = useState("");
+    const { openBox, setOpenBox, workspaceName, setWorkspaceName, workspaceDescription, setWorkspaceDescription } = useCreateWorkspace();
+    const { isPending, isSuccess, error, mutateAsync: workspacecreation } = useCreateWorkspaceApi();
+    const navigate = useNavigate()
 
-    const handleSubmit = () => {
-        // Handle workspace creation with workspaceName and workspaceDescription
-        console.log("Workspace Name:", workspaceName);
-        console.log("Workspace Description:", workspaceDescription);
+    const handleSubmit = async () => {
+        const workspaceObject = {
+            name:workspaceName,
+            description:workspaceDescription
+        }
+        const data = await workspacecreation(workspaceObject);
         setOpenBox(false);
+        navigate(`home/workspace/${data.data._id}`);
     };
 
     return (

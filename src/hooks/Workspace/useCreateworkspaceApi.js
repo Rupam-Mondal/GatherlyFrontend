@@ -1,7 +1,7 @@
 import { creatWorkspace } from "@/api/Workspace/Workspaceapi";
 import { useMutation } from "@tanstack/react-query";
 
-export function useCreateWorkspace() {
+export function useCreateWorkspaceApi() {
     const { isPending, isSuccess, error, mutateAsync } = useMutation({
         mutationFn: creatWorkspace,
         onSuccess: (data) => {

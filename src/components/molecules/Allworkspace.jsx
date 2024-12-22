@@ -1,9 +1,15 @@
 import { useCreateWorkspace } from "@/hooks/useCreateworkspace";
+import { useCreateWorkspaceApi } from "@/hooks/Workspace/useCreateworkspaceApi";
+import { useNavigate } from "react-router-dom";
 
 function Allworkspace({ data, isFetching }) {
-    const { openBox, setOpenBox } = useCreateWorkspace();
+    const { openBox, setOpenBox, workspaceName, setWorkspaceName, workspaceDescription, setWorkspaceDescription } = useCreateWorkspace();
+    const navigate = useNavigate();
     async function createWorkspace(){
-        setOpenBox(true);
+        setOpenBox(true)
+    }
+    function workspaceOpenHandler(Id){
+        navigate(`/home/workspace/${Id}`);
     }
     return (
         <div className="p-6 rounded-lg shadow-lg w-full max-w-xl flex flex-col items-center bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
@@ -16,6 +22,9 @@ function Allworkspace({ data, isFetching }) {
                         <div
                             key={index}
                             className="bg-indigo-600 p-4 rounded-md shadow-md flex items-center justify-center text-white text-lg font-medium hover:bg-indigo-500 transition cursor-pointer"
+                            onClick={() => {
+                                workspaceOpenHandler(workspace._id)
+                            }}
                         >
                             {workspace.name}
                         </div>
