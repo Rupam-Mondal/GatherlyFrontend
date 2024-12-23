@@ -18,7 +18,7 @@ function Workspacepage(){
                     <ResizablePanel
                         defaultSize={25}
                         minSize={20}
-                        className='bg-zinc-700'
+                        className='bg-indigo-100'
                     >
                         <ResizablePanelOne data={data}/>
                     </ResizablePanel>

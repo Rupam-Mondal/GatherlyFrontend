@@ -6,7 +6,7 @@ function WorkspaceSidebar() {
     const { auth, setAuth } = useAuth();
 
     return (
-        <div className="w-[90px] h-full bg-[#1F2326] flex flex-col justify-between items-center py-4">
+        <div className="w-[90px] h-full bg-indigo-700 flex flex-col justify-between items-center py-4">
             <div className="flex flex-col items-center space-y-6">
                 <div className="flex flex-col items-center text-white text-sm hover:text-gray-300 cursor-pointer">
                     <FaHome className="text-xl" />
