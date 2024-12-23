@@ -1,6 +1,8 @@
+import { Crown } from 'lucide-react';
+
 function ResizablePanelOne({ data }) {
     return (
-        <div className="w-full max-w-lg mx-auto overflow-auto">
+        <div className="w-full max-w-lg mx-auto overflow-auto max-h-[calc(100vh-40px)]">
             {/* Header Section */}
             <div className="w-full h-16 flex justify-start items-center px-6 cursor-pointer  bg-indigo-400">
                 <div className="flex items-center justify-center bg-indigo-500 w-12 h-12 text-white font-bold text-xl rounded-full">
@@ -37,7 +39,44 @@ function ResizablePanelOne({ data }) {
                 )}
             </div>
 
-            <div className=""></div>
+            <div className="py-4 w-full px-4 box-border">
+                <div className="text-center text-xl font-semibold text-indigo-600 mb-4">
+                    Members
+                </div>
+                {data?.data?.channels?.length > 0 ? (
+                    <ul className="space-y-2">
+                        {data.data.members.map((member, index) => (
+                            <li
+                                key={index}
+                                className="px-4 py-2 cursor-pointer bg-gray-100 rounded-lg shadow-sm hover:bg-indigo-50 transition flex items-center"
+                            >
+                                <span className="font-semibold text-gray-800 hover:text-indigo-600 transition text-lg">
+                                    {
+                                        member?.role == 'admin' ? (
+                                            <div className="flex items-center space-x-2">
+                                                <span className='h-8 w-8'><img src={member?.member?.avatar} alt="" /></span>
+                                                <span>{member?.member?.username}</span>
+                                                <span className="text-sm text-orange-400">(admin)</span>
+                                            </div>
+
+                                        ) : (
+                                            <div className="flex items-center space-x-2">
+                                                <span className='h-8 w-8'><img src={member?.member?.avatar} alt="" /></span>
+                                                <div>{member?.member?.username}</div>
+                                            </div>
+                                        )
+                                    }
+                                </span>
+                            </li>
+                        ))}
+
+                    </ul>
+                ) : (
+                    <div className="text-center text-gray-500">
+                        No members
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
