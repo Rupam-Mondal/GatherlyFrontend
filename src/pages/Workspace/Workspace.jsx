@@ -4,6 +4,7 @@ import { LucideLoader2, LucideLoaderCircle, LucideLoaderPinwheel } from "lucide-
 import { useParams } from "react-router-dom";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
+import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne";
 
 function Workspacepage(){
     const {workspaceId} = useParams();
@@ -15,20 +16,18 @@ function Workspacepage(){
                 <WorkspaceSidebar/>
                 <ResizablePanelGroup direction="horizontal" autoSaveId={'workspace-resize'}>
                     <ResizablePanel
-                        defaultSize={20}
-                        minSize={17}
+                        defaultSize={25}
+                        minSize={20}
                         className='bg-zinc-700'
                     >
-                        <div>
-                            Sidebar
-                        </div>
+                        <ResizablePanelOne data={data}/>
                     </ResizablePanel>
                     <ResizableHandle withHandle />
                     <ResizablePanel
                         minSize={60}
                         className='bg-zinc-600'
                     >
-                        some
+                        
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>
