@@ -24,6 +24,8 @@ export function Modals() {
         }
         const data = await workspacecreation(workspaceObject);
         setOpenBox(false);
+        setWorkspaceName('');
+        setWorkspaceDescription('');
     };
 
     return (
