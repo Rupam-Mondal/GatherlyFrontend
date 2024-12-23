@@ -2,7 +2,7 @@ import { GetWorkspaceByUserId } from "@/api/Workspace/Workspaceapi";
 import { useQuery } from "@tanstack/react-query";
 
 export function useGetuserWorkspace(){
-    const {isFetching , isSuccess , error , data} = useQuery({
+    const {isFetching , isSuccess , error , data , refetch} = useQuery({
         queryFn:() => {
             return GetWorkspaceByUserId(localStorage.getItem('Token'));
         },
@@ -13,6 +13,7 @@ export function useGetuserWorkspace(){
         isFetching,
         isSuccess,
         error,
-        data
+        data , 
+        refetch
     };
 }

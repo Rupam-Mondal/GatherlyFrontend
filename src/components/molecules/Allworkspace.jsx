@@ -1,8 +1,9 @@
 import { useCreateWorkspace } from "@/hooks/useCreateworkspace";
 import { useCreateWorkspaceApi } from "@/hooks/Workspace/useCreateworkspaceApi";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Allworkspace({ data, isFetching }) {
+function Allworkspace({ data, isFetching , refetch }) {
     const { openBox, setOpenBox, workspaceName, setWorkspaceName, workspaceDescription, setWorkspaceDescription } = useCreateWorkspace();
     const navigate = useNavigate();
     async function createWorkspace(){
@@ -11,6 +12,9 @@ function Allworkspace({ data, isFetching }) {
     function workspaceOpenHandler(Id){
         navigate(`/home/workspace/${Id}`);
     }
+    useEffect(() => {
+        refetch();
+    } , [openBox])
     return (
         <div className="p-6 rounded-lg shadow-lg w-full max-w-xl flex flex-col items-center bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-700">
             <h2 className="text-white text-2xl font-semibold mb-4">Workspaces</h2>

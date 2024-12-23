@@ -24,7 +24,6 @@ export function Modals() {
         }
         const data = await workspacecreation(workspaceObject);
         setOpenBox(false);
-        navigate(`home/workspace/${data.data._id}`);
     };
 
     return (

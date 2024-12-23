@@ -5,7 +5,7 @@ import { useGetuserWorkspace } from "@/hooks/Workspace/useGetUserWorkspace";
 
 function Home() {
     const { auth, setAuth } = useAuth();
-    const { isFetching, data } = useGetuserWorkspace();
+    const { isFetching, data , refetch } = useGetuserWorkspace();
 
     return (
         <div className="h-screen bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 flex flex-col items-center justify-center px-4">
@@ -13,7 +13,7 @@ function Home() {
                 <UserButton auth={auth} setAuth={setAuth} />
             </div>
             <h1 className="text-4xl font-bold text-white mb-8">Your Workspaces</h1>
-            <Allworkspace data={data} isFetching={isFetching} />
+            <Allworkspace data={data} isFetching={isFetching} refetch={refetch} />
         </div>
     );
 }
