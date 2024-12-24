@@ -1,5 +1,6 @@
 import useCreateChannelModal from '@/hooks/useCreateChannel';
 import { Crown, PlusSquareIcon } from 'lucide-react';
+import { UserRoundPlus } from 'lucide-react';
 
 function ResizablePanelOne({ data }) {
     const { channelModalOpen, setChannelModalOpen } = useCreateChannelModal();
@@ -53,8 +54,15 @@ function ResizablePanelOne({ data }) {
             </div>
 
             <div className="py-4 w-full px-4 box-border">
-                <div className="text-center text-xl font-semibold text-indigo-600 mb-4">
-                    Members
+                <div className='flex items-center justify-center space-x-4 mb-3'>
+                    <div className="text-center text-xl font-semibold text-indigo-600">
+                        Members
+                    </div>
+                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-100 p-2 hover:bg-indigo-200 transition duration-200'
+                        onClick={ModalOpen}>
+                        <UserRoundPlus className="w-6 h-6 text-indigo-600" />
+                    </div>
+
                 </div>
                 {data?.data?.channels?.length > 0 ? (
                     <ul className="space-y-2">
