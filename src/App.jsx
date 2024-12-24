@@ -26,7 +26,6 @@ function App() {
         </Routes>
         <Toaster/>
         <Modals/>
-        <CreateChannelModal/>
         </AppcontextProvider>
       </QueryClientProvider>
   )

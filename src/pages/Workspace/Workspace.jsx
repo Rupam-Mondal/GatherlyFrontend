@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
 import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne";
+import CreateChannelModal from "@/components/molecules/CreateChannelModals";
 
 function Workspacepage(){
     const {workspaceId} = useParams();
@@ -30,6 +31,7 @@ function Workspacepage(){
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>
+            <CreateChannelModal workspaceId={workspaceId}/>
         </>
     )
 }

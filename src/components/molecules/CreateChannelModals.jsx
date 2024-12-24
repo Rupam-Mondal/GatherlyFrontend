@@ -7,13 +7,25 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { useCreateChannel } from "@/hooks/ChannelHooks/useCreateChannel";
 import useCreateChannelModal from "@/hooks/useCreateChannel";
+import { useQueryClient } from "@tanstack/react-query";
 
-function CreateChannelModal() {
+function CreateChannelModal({workspaceId}) {
     const { channelModalOpen, setChannelModalOpen, channelName, setChannelName } = useCreateChannelModal();
+    const { isPending, isSuccess, error, mutateAsync:CreateChannel } = useCreateChannel();
+    const queryClient = useQueryClient();
+    const handleCreate = async () => {
+        console.log(channelName);
+        const ChannelObject = {
+            workspaceId: workspaceId,
+            channelName:channelName
+        }
+        await CreateChannel(ChannelObject);
 
-    const handleCreate = () => {
-        console.log(channelName)
+        queryClient.invalidateQueries(['fetchworkspaceId']);
+        setChannelModalOpen(false);
+        setChannelName("");
     };
 
     const handleCancel = () => {
