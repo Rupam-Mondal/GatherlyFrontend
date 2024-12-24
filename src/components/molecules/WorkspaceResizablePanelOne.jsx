@@ -1,6 +1,11 @@
-import { Crown } from 'lucide-react';
+import useCreateChannelModal from '@/hooks/useCreateChannel';
+import { Crown, PlusSquareIcon } from 'lucide-react';
 
 function ResizablePanelOne({ data }) {
+    const { channelModalOpen, setChannelModalOpen } = useCreateChannelModal();
+    function ModalOpen(){
+        setChannelModalOpen(true);
+    }
     return (
         <div className="w-full max-w-lg mx-auto overflow-auto max-h-[calc(100vh-40px)]">
             {/* Header Section */}
@@ -15,9 +20,17 @@ function ResizablePanelOne({ data }) {
 
             {/* Content Section */}
             <div className="py-4 w-full px-4 box-border">
-                <div className="text-center text-xl font-semibold text-indigo-600 mb-4">
-                    Channels
+                <div className='flex items-center justify-center space-x-4 mb-3'>
+                    <div className="text-center text-xl font-semibold text-indigo-600">
+                        Channels
+                    </div>
+                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-100 p-2 hover:bg-indigo-200 transition duration-200'
+                    onClick={ModalOpen}>
+                        <PlusSquareIcon className="w-6 h-6 text-indigo-600" />
+                    </div>
+
                 </div>
+
                 {data?.data?.channels?.length > 0 ? (
                     <ul className="space-y-2">
                         {data.data.channels.map((channel, index) => (

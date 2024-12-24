@@ -11,6 +11,7 @@ import { ProtectedRoute } from "./components/molecules/ProtectedRoutes"
 import { Toaster } from "./components/ui/toaster"
 import Modals from "./components/molecules/Modals"
 import Workspacepage from "./pages/Workspace/Workspace"
+import CreateChannelModal from "./components/molecules/CreateChannelModals"
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -25,6 +26,7 @@ function App() {
         </Routes>
         <Toaster/>
         <Modals/>
+        <CreateChannelModal/>
         </AppcontextProvider>
       </QueryClientProvider>
   )

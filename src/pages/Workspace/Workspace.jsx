@@ -1,6 +1,5 @@
 import WorkspaceSidebar from "@/components/molecules/WorkspaceSidebar";
 import { useGetWorkspaceId } from "@/hooks/Workspace/useGetWorkspaceId";
-import { LucideLoader2, LucideLoaderCircle, LucideLoaderPinwheel } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
@@ -8,7 +7,7 @@ import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne
 
 function Workspacepage(){
     const {workspaceId} = useParams();
-    const { isFetching,isSuccess,error,data,refetch } = useGetWorkspaceId(workspaceId);
+    const { isFetching,isSuccess,error,data,refetch } = useGetWorkspaceId(workspaceId);;
     return (
         <>
             <WorkspaceNavbar/>
