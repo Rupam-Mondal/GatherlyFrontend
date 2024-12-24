@@ -45,3 +45,18 @@ export async function getWorkspaceById(workspaceObject){
         return null;
     }
 }
+
+export async function Joinworkspace(WorkspaceObject){
+    try {
+        const Token = localStorage.getItem('Token');
+        const response = await axiosInstance.post('/workspace/addmember', WorkspaceObject , {
+            headers:{
+                'x-access-token':Token
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

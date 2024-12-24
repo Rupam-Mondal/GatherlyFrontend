@@ -59,7 +59,7 @@ function Allworkspace({ data, isFetching, refetch }) {
                     Join Workspace
                 </button>
             </div>
-            <WorkspaceJoinModal/>
+            <WorkspaceJoinModal refetch={refetch}/>
         </div>
     );
 }

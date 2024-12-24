@@ -8,13 +8,20 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { useJoinWorkspaceModal } from "@/hooks/useJoinworkspaceModal";
+import useJoinWorkspace from "@/hooks/Workspace/useJoinWorkspace";
+import { Loader } from "lucide-react";
 
-function WorkspaceJoinModal() {
+function WorkspaceJoinModal({ refetch }) {
     const { openJoinModal, setOpenJoinModal, joinCode, setJoinCode } = useJoinWorkspaceModal();
+    const { isPending, isSuccess, error, mutateAsync: workspaceJoin } = useJoinWorkspace();
 
-    function handleJoin() {
-        // Logic for joining a workspace
-        console.log("Joining workspace with code:", joinCode);
+    async function handleJoin() {
+        const joinObject = {
+            joincode: joinCode
+        }
+        await workspaceJoin(joinObject);
+        refetch();
+        setOpenJoinModal(false);
     }
 
     function handleCancel() {
@@ -46,12 +53,25 @@ function WorkspaceJoinModal() {
                     >
                         Cancel
                     </button>
-                    <button
-                        onClick={handleJoin}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition"
-                    >
-                        Join
-                    </button>
+                    <div>
+                        {
+                            isPending ? (
+                                <button
+                                    onClick={handleJoin}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition"
+                                >
+                                    <Loader className="animate-spin" />
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={handleJoin}
+                                    className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500 transition"
+                                >
+                                    Join
+                                </button>
+                            )
+                        }
+                    </div>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
