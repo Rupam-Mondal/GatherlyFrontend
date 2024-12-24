@@ -10,16 +10,17 @@ import {
 import { useCreateChannel } from "@/hooks/ChannelHooks/useCreateChannel";
 import useCreateChannelModal from "@/hooks/useCreateChannel";
 import { useQueryClient } from "@tanstack/react-query";
+import { Loader } from 'lucide-react';
 
-function CreateChannelModal({workspaceId}) {
+function CreateChannelModal({ workspaceId }) {
     const { channelModalOpen, setChannelModalOpen, channelName, setChannelName } = useCreateChannelModal();
-    const { isPending, isSuccess, error, mutateAsync:CreateChannel } = useCreateChannel();
+    const { isPending, isSuccess, error, mutateAsync: CreateChannel } = useCreateChannel();
     const queryClient = useQueryClient();
     const handleCreate = async () => {
         console.log(channelName);
         const ChannelObject = {
             workspaceId: workspaceId,
-            channelName:channelName
+            channelName: channelName
         }
         await CreateChannel(ChannelObject);
 
@@ -52,12 +53,25 @@ function CreateChannelModal({workspaceId}) {
                     />
                 </div>
                 <DialogFooter className="mt-4 flex justify-end space-x-2">
-                    <button
-                        className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
-                        onClick={handleCreate}
-                    >
-                        Create
-                    </button>
+                    <div>
+                        {
+                            isPending ? (
+                                <button
+                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                    onClick={handleCreate}
+                                >
+                                    <Loader className="animate-spin" />
+                                </button>
+                            ) : (
+                                <button
+                                    className="px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600"
+                                    onClick={handleCreate}
+                                >
+                                    Create
+                                </button>
+                            )
+                        }
+                    </div>
                     <button
                         className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300"
                         onClick={handleCancel}
