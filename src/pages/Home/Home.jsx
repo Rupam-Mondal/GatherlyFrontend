@@ -1,6 +1,7 @@
 import UserButton from "@/components/atoms/UserButton/UserButton";
 import Allworkspace from "@/components/molecules/Allworkspace";
 import { useAuth } from "@/hooks/useAuth";
+import { useJoinWorkspaceModal } from "@/hooks/useJoinworkspaceModal";
 import { useGetuserWorkspace } from "@/hooks/Workspace/useGetUserWorkspace";
 
 function Home() {
