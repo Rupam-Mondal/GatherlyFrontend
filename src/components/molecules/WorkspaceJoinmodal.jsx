@@ -22,6 +22,7 @@ function WorkspaceJoinModal({ refetch }) {
         await workspaceJoin(joinObject);
         refetch();
         setOpenJoinModal(false);
+        setJoinCode('');
     }
 
     function handleCancel() {
