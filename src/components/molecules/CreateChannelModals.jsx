@@ -8,7 +8,6 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import useCreateChannelModal from "@/hooks/useCreateChannel";
-import { useState } from "react";
 
 function CreateChannelModal() {
     const { channelModalOpen, setChannelModalOpen, channelName, setChannelName } = useCreateChannelModal();
