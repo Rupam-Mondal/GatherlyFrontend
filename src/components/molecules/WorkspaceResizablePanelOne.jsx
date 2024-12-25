@@ -1,11 +1,21 @@
+import { useToast } from '@/hooks/use-toast';
 import useCreateChannelModal from '@/hooks/useCreateChannel';
 import { Crown, PlusSquareIcon } from 'lucide-react';
 import { UserRoundPlus } from 'lucide-react';
 
 function ResizablePanelOne({ data }) {
     const { channelModalOpen, setChannelModalOpen } = useCreateChannelModal();
+    const { toast } = useToast()
     function ModalOpen(){
         setChannelModalOpen(true);
+    }
+    function InviteLink(){
+        console.log(window.location.href+'/join/'+data?.data?.joincode);
+        const JoinLink = window.location.href + '/join/' + data?.data?.joincode;
+        navigator.clipboard.writeText(JoinLink);
+        toast({
+            title: "Link copied to clipboard"
+        })
     }
     return (
         <div className="w-full max-w-lg mx-auto overflow-auto max-h-[calc(100vh-40px)]">
@@ -59,7 +69,7 @@ function ResizablePanelOne({ data }) {
                         Members
                     </div>
                     <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-100 p-2 hover:bg-indigo-200 transition duration-200'
-                        onClick={ModalOpen}>
+                        onClick={InviteLink}>
                         <UserRoundPlus className="w-6 h-6 text-indigo-600" />
                     </div>
 
