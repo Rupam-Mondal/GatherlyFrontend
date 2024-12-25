@@ -1,18 +1,24 @@
 import { useGetWorkspaceId } from "@/hooks/Workspace/useGetWorkspaceId";
-import { useParams } from "react-router-dom";
+import useJoinWorkspace from "@/hooks/Workspace/useJoinWorkspace";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
 function Joinpage() {
     const { workspaceId, joincode } = useParams();
     const { isFetching, isSuccess, error, data, refetch } = useGetWorkspaceId(workspaceId);
+    const { isPending, isSuccess:joinSuccess, error:JoinError, mutateAsync: workspaceJoin } = useJoinWorkspace();
+    const navigate = useNavigate();
 
-    const handleJoin = () => {
-        console.log("Join button clicked");
+    const handleJoin = async () => {
+        const joinObject = {
+            joincode: joincode
+        };
+        await workspaceJoin(joinObject);
+        navigate(`/home/workspace/${workspaceId}`);
 
     };
 
     const handleCancel = () => {
-        console.log("Cancel button clicked");
-        // Add logic for canceling here
+        navigate(`/home`);
     };
 
     return (
