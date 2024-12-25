@@ -8,7 +8,7 @@ import CreateChannelModal from "@/components/molecules/CreateChannelModals";
 
 function Workspacepage(){
     const {workspaceId} = useParams();
-    const { isFetching,isSuccess,error,data,refetch } = useGetWorkspaceId(workspaceId);;
+    const { isFetching,isSuccess,error,data,refetch } = useGetWorkspaceId(workspaceId);
     return (
         <>
             <WorkspaceNavbar/>

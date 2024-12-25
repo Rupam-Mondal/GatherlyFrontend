@@ -12,6 +12,7 @@ import { Toaster } from "./components/ui/toaster"
 import Modals from "./components/molecules/Modals"
 import Workspacepage from "./pages/Workspace/Workspace"
 import CreateChannelModal from "./components/molecules/CreateChannelModals"
+import Joinpage from "./pages/Joinpage/Joinpage"
 function App() {
   const queryClient = new QueryClient();
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/auth/signin" element={<Auth><SignInCard /></Auth>} />
           <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
           <Route path='/home/workspace/:workspaceId' element={<ProtectedRoute><Workspacepage/></ProtectedRoute>}/>
+          <Route path="/home/workspace/:workspaceId/join/:joincode" element={<ProtectedRoute><Joinpage/></ProtectedRoute>}/>
           <Route path="/*" element={<Notfound />} />
         </Routes>
         <Toaster/>
