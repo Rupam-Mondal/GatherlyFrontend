@@ -5,11 +5,12 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
 import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne";
 import CreateChannelModal from "@/components/molecules/CreateChannelModals";
-import ResizablePanelTwo from "@/components/molecules/ResizablePaneltwo";
+import useGetChannelById from "@/hooks/ChannelHooks/useGetChannelById";
 
 function Channel(){
-    const { workspaceId } = useParams();
+    const { workspaceId, channelId } = useParams();
     const { isFetching, isSuccess, error, data, refetch } = useGetWorkspaceId(workspaceId);
+    const { isFetching:pending, isSuccess:channelSuccess, error:channelError, data:channelDetails } = useGetChannelById(channelId);
     return (
         <>
             <WorkspaceNavbar />

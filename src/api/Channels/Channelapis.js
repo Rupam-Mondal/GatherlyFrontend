@@ -14,3 +14,18 @@ export async function createChannel(ChannelObject){
         return null;
     }
 }
+export async function getChannelById(ChannelObject){
+    try {
+        const Token = localStorage.getItem('Token');
+        const response = await axiosInstance.get('/channel/channelDetails' , {
+            headers:{
+                'x-access-token':Token
+            },
+            params: ChannelObject
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
