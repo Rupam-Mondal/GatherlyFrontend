@@ -5,6 +5,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
 import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne";
 import CreateChannelModal from "@/components/molecules/CreateChannelModals";
+import ResizablePanelTwo from "@/components/molecules/ResizablePaneltwo";
 
 function Workspacepage(){
     const {workspaceId} = useParams();
@@ -12,22 +13,22 @@ function Workspacepage(){
     return (
         <>
             <WorkspaceNavbar/>
-            <div className="h-[calc(100vh-40px)] w-full bg-gradient-to-b from-[#2C2F33] to-[#23272A] flex">
+            <div className="h-[calc(100vh-40px)] w-full flex">
                 <WorkspaceSidebar/>
                 <ResizablePanelGroup direction="horizontal" autoSaveId={'workspace-resize'}>
                     <ResizablePanel
                         defaultSize={25}
                         minSize={20}
-                        className='bg-indigo-100'
+                        className='bg-indigo-200'
                     >
                         <ResizablePanelOne data={data}/>
                     </ResizablePanel>
                     <ResizableHandle withHandle />
                     <ResizablePanel
                         minSize={60}
-                        className='bg-zinc-600'
+                        className='bg-indigo-100'
                     >
-                        
+                        <ResizablePanelTwo name={data?.data?.name}/>
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>

@@ -35,7 +35,7 @@ function ResizablePanelOne({ data }) {
                     <div className="text-center text-xl font-semibold text-indigo-600">
                         Channels
                     </div>
-                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-100 p-2 hover:bg-indigo-200 transition duration-200'
+                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-200 p-2 hover:bg-indigo-300 transition duration-200'
                     onClick={ModalOpen}>
                         <PlusSquareIcon className="w-6 h-6 text-indigo-600" />
                     </div>
@@ -68,7 +68,7 @@ function ResizablePanelOne({ data }) {
                     <div className="text-center text-xl font-semibold text-indigo-600">
                         Members
                     </div>
-                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-100 p-2 hover:bg-indigo-200 transition duration-200'
+                    <div className='cursor-pointer flex items-center justify-center rounded-full bg-indigo-200 p-2 hover:bg-indigo-300 transition duration-200'
                         onClick={InviteLink}>
                         <UserRoundPlus className="w-6 h-6 text-indigo-600" />
                     </div>
