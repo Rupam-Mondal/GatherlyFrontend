@@ -29,7 +29,7 @@ function Channel(){
                         minSize={60}
                         className='bg-indigo-100'
                     >
-                        
+                        <div>{channelDetails?.data?.name}</div>
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>
