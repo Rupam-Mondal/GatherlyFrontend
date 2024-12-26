@@ -2,6 +2,7 @@ import { ProtectedRoute } from "@/components/molecules/ProtectedRoutes";
 import SignInCard from "@/components/organisms/Signincard";
 import SignUpCard from "@/components/organisms/SingnUpcard";
 import Auth from "@/pages/Auth";
+import Channel from "@/pages/Channel/Channel";
 import Home from "@/pages/Home/Home";
 import Joinpage from "@/pages/Joinpage/Joinpage";
 import { Notfound } from "@/pages/Nofoundpage";
@@ -17,6 +18,7 @@ function Routing() {
                 <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
                 <Route path='/home/workspace/:workspaceId' element={<ProtectedRoute><Workspacepage /></ProtectedRoute>} />
                 <Route path="/home/workspace/:workspaceId/join/:joincode" element={<ProtectedRoute><Joinpage /></ProtectedRoute>} />
+                <Route path="/home/workspace/:workspaceId/Channel/:channelId" element={<ProtectedRoute><Channel/></ProtectedRoute>}/>
                 <Route path="/*" element={<Notfound />} />
             </Routes>
         </>

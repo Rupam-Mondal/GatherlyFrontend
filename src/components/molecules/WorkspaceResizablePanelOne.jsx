@@ -2,12 +2,17 @@ import { useToast } from '@/hooks/use-toast';
 import useCreateChannelModal from '@/hooks/useCreateChannel';
 import { Crown, PlusSquareIcon } from 'lucide-react';
 import { UserRoundPlus } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 function ResizablePanelOne({ data }) {
     const { channelModalOpen, setChannelModalOpen } = useCreateChannelModal();
-    const { toast } = useToast()
+    const { toast } = useToast();
+    const navigate = useNavigate();
     function ModalOpen(){
         setChannelModalOpen(true);
+    }
+    function ChannelOpen(channelId){
+        navigate(`/home/workspace/${data?.data?._id}/Channel/${channelId}`);
     }
     function InviteLink(){
         console.log(window.location.href+'/join/'+data?.data?.joincode);
@@ -48,6 +53,9 @@ function ResizablePanelOne({ data }) {
                             <li
                                 key={index}
                                 className="px-4 py-2 cursor-pointer bg-gray-100 rounded-lg shadow-sm hover:bg-indigo-50 transition flex items-center"
+                                onClick={() => {
+                                    ChannelOpen(channel?._id);
+                                }}
                             >
                                 <span className="font-semibold text-gray-800 hover:text-indigo-600 transition text-lg">
                                     # {channel.name}
