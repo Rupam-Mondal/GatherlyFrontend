@@ -6,6 +6,7 @@ import WorkspaceNavbar from "@/components/molecules/WorkspaceNavbar";
 import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne";
 import CreateChannelModal from "@/components/molecules/CreateChannelModals";
 import useGetChannelById from "@/hooks/ChannelHooks/useGetChannelById";
+import ChannelRightPanel from "@/components/molecules/ChannelRightPanelTwo";
 
 function Channel(){
     const { workspaceId, channelId } = useParams();
@@ -29,7 +30,12 @@ function Channel(){
                         minSize={60}
                         className='bg-indigo-100'
                     >
-                        <div>{channelDetails?.data?.name}</div>
+                        <ChannelRightPanel
+                            isFetching={pending}
+                            isSuccess={channelSuccess}
+                            error={channelError}
+                            data={channelDetails}
+                        />
                     </ResizablePanel>
                 </ResizablePanelGroup>
             </div>
