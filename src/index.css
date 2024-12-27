@@ -64,3 +64,23 @@
     @apply bg-background text-foreground;
   }
 }
+.ql-editor {
+    all: unset; 
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+.ql-editor strong, 
+.ql-editor b {
+    font-weight: bold !important;
+}
+
+.ql-editor em,
+.ql-editor i {
+    font-style: italic !important;
+}
+
+.ql-editor u {
+    text-decoration: underline !important;
+}
