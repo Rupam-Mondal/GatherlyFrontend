@@ -1,4 +1,5 @@
 import { Loader } from "lucide-react";
+import ChatBox from "./Chat/Chatbox";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     if(isFetching){
@@ -10,8 +11,9 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     }
     return (
         <>
-            <div className="h-full w-full">
-                {data?.data?.name}
+            <div className="h-full w-full flex flex-col">
+                <div className="flex-1">{data?.data?.name}</div>
+                <div><ChatBox/></div>
             </div>
         </>
     )
