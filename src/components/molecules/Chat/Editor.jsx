@@ -13,7 +13,7 @@ function Editor() {
                 modules: {
                     toolbar: [
                         ['bold', 'italic', 'underline', 'strike'],
-                        ['link'],
+                        ['link' , 'image'],
                         [{ list: 'ordered' }, { list: 'bullet' }],
                         ['clean']
                     ]
