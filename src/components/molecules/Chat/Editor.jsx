@@ -25,7 +25,7 @@ function Editor() {
 
     return (
         <div className="bg-indigo-200 rounded-2xl">
-            <div ref={editorRef} style={{ height: "100px" }} />
+            <div ref={editorRef} style={{ height: "80px" }} />
         </div>
     );
 }
