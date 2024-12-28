@@ -33,7 +33,7 @@ export async function getChannelById(ChannelObject){
 export async function UpdateChannelName(UpdateChannelObject){
     try {
         const Token = localStorage.getItem('Token');
-        const response = await axiosInstance.post('' , UpdateChannelObject , {
+        const response = await axiosInstance.post('/channel/updateChannel' , UpdateChannelObject , {
             headers:{
                 'x-access-token':Token
             }

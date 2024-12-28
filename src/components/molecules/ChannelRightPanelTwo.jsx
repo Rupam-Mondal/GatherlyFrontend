@@ -1,10 +1,17 @@
 import { Edit, Loader } from "lucide-react";
 import ChatBox from "./Chat/Chatbox";
 import useUpdateChannel from "@/hooks/ChannelHooks/useUpdateChannel";
+import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
+import UpdateChannelModal from "./UpdateChannelModal";
+import { useParams } from "react-router-dom";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
-
+    const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
     const { isPending,isSuccess:updateChannelSuccess,error:UpdateChannelError,mutateAsync:UpdateChannel } = useUpdateChannel();
+    const { workspaceId, channelId } = useParams();
+    async function UpdateHandler(){
+        setUpdateModalOpen(true);
+    }
     if(isFetching){
         return (
             <div className="h-full w-full flex justify-center items-center">
@@ -19,13 +26,14 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                     <span className="drop-shadow-lg">
                         # {data?.data?.name}
                     </span>
-                    <span className="ml-6">
+                    <span className="ml-6" onClick={UpdateHandler}>
                         <Edit size={20}/>
                     </span>
                 </div>
 
                 <div className="flex-1"></div>
                 <div><ChatBox/></div>
+                <UpdateChannelModal channelId={channelId}/>
             </div>
         </>
     )
