@@ -29,3 +29,18 @@ export async function getChannelById(ChannelObject){
         return null;
     }
 }
+
+export async function UpdateChannelName(UpdateChannelObject){
+    try {
+        const Token = localStorage.getItem('Token');
+        const response = await axiosInstance.post('' , UpdateChannelObject , {
+            headers:{
+                'x-access-token':Token
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}

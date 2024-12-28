@@ -1,7 +1,10 @@
 import { Edit, Loader } from "lucide-react";
 import ChatBox from "./Chat/Chatbox";
+import useUpdateChannel from "@/hooks/ChannelHooks/useUpdateChannel";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
+
+    const { isPending,isSuccess:updateChannelSuccess,error:UpdateChannelError,mutateAsync:UpdateChannel } = useUpdateChannel();
     if(isFetching){
         return (
             <div className="h-full w-full flex justify-center items-center">
