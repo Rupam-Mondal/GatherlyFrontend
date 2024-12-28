@@ -1,4 +1,4 @@
-import { Loader } from "lucide-react";
+import { Edit, Loader } from "lucide-react";
 import ChatBox from "./Chat/Chatbox";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
@@ -15,6 +15,9 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                 <div className="w-full h-[50px] text-2xl bg-indigo-300 flex justify-center items-center shadow-md rounded-lg">
                     <span className="drop-shadow-lg">
                         # {data?.data?.name}
+                    </span>
+                    <span className="ml-6">
+                        <Edit size={20}/>
                     </span>
                 </div>
 
