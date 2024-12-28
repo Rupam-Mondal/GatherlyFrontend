@@ -2,14 +2,29 @@ import React, { useEffect, useRef } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { SendIcon } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useParams } from "react-router-dom";
+import useSocket from "@/hooks/useSocket";
 
 function Editor() {
     const editorRef = useRef(null);
     const quillInstance = useRef(null);
+    const {auth} = useAuth();
+    const { channelId } = useParams();
+    const { socket, currentChannel, joinchannel } = useSocket();
 
     function HandleSend() {
         const messageObject = JSON.stringify(quillInstance.current.getContents());
-        console.log(messageObject);
+        const Object = {
+            body:messageObject,
+            senderId: auth.user.id,
+            channelId: channelId
+        };
+        socket.emit('newMessage' , Object , (data) => {
+            console.log("message sent successfully" , data);
+        });
+        quillInstance.current.setContents([]);
+
     }
 
     useEffect(() => {

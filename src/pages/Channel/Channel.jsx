@@ -7,11 +7,19 @@ import ResizablePanelOne from "@/components/molecules/WorkspaceResizablePanelOne
 import CreateChannelModal from "@/components/molecules/CreateChannelModals";
 import useGetChannelById from "@/hooks/ChannelHooks/useGetChannelById";
 import ChannelRightPanel from "@/components/molecules/ChannelRightPanelTwo";
+import useSocket from "@/hooks/useSocket";
+import { useEffect } from "react";
 
 function Channel(){
     const { workspaceId, channelId } = useParams();
     const { isFetching, isSuccess, error, data, refetch } = useGetWorkspaceId(workspaceId);
     const { isFetching:pending, isSuccess:channelSuccess, error:channelError, data:channelDetails } = useGetChannelById(channelId);
+    const { joinchannel } = useSocket();
+    useEffect(() => {
+        if(!isFetching & !error){
+            joinchannel(channelId);
+        }
+    } , [isFetching , channelId]);
     return (
         <>
             <WorkspaceNavbar />
