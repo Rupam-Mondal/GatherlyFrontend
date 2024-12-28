@@ -26,7 +26,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                     <span className="drop-shadow-lg">
                         # {data?.data?.name}
                     </span>
-                    <span className="ml-6" onClick={UpdateHandler}>
+                    <span className="ml-6 cursor-pointer" onClick={UpdateHandler}>
                         <Edit size={20}/>
                     </span>
                 </div>

@@ -8,9 +8,10 @@ import {
 import useUpdateChannel from "@/hooks/ChannelHooks/useUpdateChannel";
 import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
 import { useQueryClient } from "@tanstack/react-query";
+import { Loader } from "lucide-react";
 import { useParams } from "react-router-dom";
 
-function UpdateChannelModal({channelId}) {
+function UpdateChannelModal({ channelId }) {
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
     const { isPending, isSuccess: updateChannelSuccess, error: UpdateChannelError, mutateAsync: UpdateChannel } = useUpdateChannel();
     const queryClient = useQueryClient();
@@ -19,11 +20,12 @@ function UpdateChannelModal({channelId}) {
         if (updateInput.trim()) {
             console.log(updateInput);
             const ChannelObject = {
-                channelId:channelId,
-                channelName:updateInput
+                channelId: channelId,
+                channelName: updateInput
             }
             await UpdateChannel(ChannelObject);
             setUpdateModalOpen(false);
+            setUpdateInput('');
             queryClient.invalidateQueries(['fetchworkspaceId']);
         } else {
             alert("Channel name cannot be empty");
@@ -46,12 +48,23 @@ function UpdateChannelModal({channelId}) {
                     />
                 </div>
                 <DialogFooter>
-                    <button
-                        onClick={handleSave}
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md"
-                    >
-                        Save
-                    </button>
+                    {
+                        isPending ? (
+                            <button
+                                onClick={handleSave}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                            >
+                                <Loader className="animate-spin"/>
+                            </button>
+                        ) : (
+                            <button
+                                onClick={handleSave}
+                                className="px-4 py-2 bg-blue-500 text-white rounded-md"
+                            >
+                                Save
+                            </button>
+                        )
+                    }
                 </DialogFooter>
             </DialogContent>
         </Dialog>
