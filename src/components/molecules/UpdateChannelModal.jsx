@@ -7,11 +7,13 @@ import {
 } from "@/components/ui/dialog";
 import useUpdateChannel from "@/hooks/ChannelHooks/useUpdateChannel";
 import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
+import { useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 function UpdateChannelModal({channelId}) {
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
     const { isPending, isSuccess: updateChannelSuccess, error: UpdateChannelError, mutateAsync: UpdateChannel } = useUpdateChannel();
+    const queryClient = useQueryClient();
 
     const handleSave = async () => {
         if (updateInput.trim()) {
@@ -22,6 +24,7 @@ function UpdateChannelModal({channelId}) {
             }
             await UpdateChannel(ChannelObject);
             setUpdateModalOpen(false);
+            queryClient.invalidateQueries(['fetchworkspaceId']);
         } else {
             alert("Channel name cannot be empty");
         }
