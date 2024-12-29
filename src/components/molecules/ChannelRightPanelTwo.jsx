@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import MessageRenderer from "../atoms/MessageRenderer/MessageRenderer";
 import { useState } from "react";
 import useGetMessageChannelId from "@/hooks/ChannelHooks/useGetMessageChannelId";
+import Message from "./Message/Message";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
@@ -42,10 +43,10 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                     </span>
                 </div>
 
-                <div className="flex-1">
+                <div className="flex-1 overflow-y-auto">
                     {
                         data?.data?.messages.map((v , i) => (
-                            <MessageRenderer value={v.body} />
+                            <Message data={v}/>
                         ))
                     }
                 </div>
