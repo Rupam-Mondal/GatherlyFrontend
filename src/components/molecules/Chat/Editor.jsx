@@ -5,6 +5,7 @@ import { SendIcon } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useParams } from "react-router-dom";
 import useSocket from "@/hooks/useSocket";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Editor({value , setValue}) {
     const editorRef = useRef(null);
@@ -25,7 +26,6 @@ function Editor({value , setValue}) {
             console.log("message sent successfully" , data);
         });
         quillInstance.current.setContents([]);
-
     }
 
     useEffect(() => {

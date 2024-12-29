@@ -24,13 +24,13 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     async function UpdateHandler(){
         setUpdateModalOpen(true);
     }
-    if(isFetching){
-        return (
-            <div className="h-full w-full flex justify-center items-center">
-                <Loader size={40} className="animate-spin text-zinc-500"/>
-            </div>
-        )
-    }
+    // if(isFetching){
+    //     return (
+    //         <div className="h-full w-full flex justify-center items-center">
+    //             <Loader size={40} className="animate-spin text-zinc-500"/>
+    //         </div>
+    //     )
+    // }
     return (
         <>
             <div className="h-full w-full flex flex-col">
@@ -45,7 +45,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
 
                 <div className="flex-1 overflow-y-auto">
                     {
-                        data?.data?.messages.map((v , i) => (
+                        data?.data?.messages.reverse().map((v , i) => (
                             <Message data={v}/>
                         ))
                     }
