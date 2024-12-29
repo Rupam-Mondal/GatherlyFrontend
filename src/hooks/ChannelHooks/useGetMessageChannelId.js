@@ -1,10 +1,10 @@
 import { getAllMessagesOfChannel } from "@/api/Channels/Channelapis";
 import { useQuery } from "@tanstack/react-query";
 
-function useGetMessageChannelId(workspaceID , channelId){
+function useGetMessageChannelId(ChannelObject){
     const { isFetching, isSuccess, error, data } = useQuery({
         queryFn:() => {
-            return getAllMessagesOfChannel();
+            return getAllMessagesOfChannel(ChannelObject);
         },
         queryKey:['PaginatedMessage']
     });

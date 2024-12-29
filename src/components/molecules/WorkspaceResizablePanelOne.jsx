@@ -1,5 +1,6 @@
 import { useToast } from '@/hooks/use-toast';
 import useCreateChannelModal from '@/hooks/useCreateChannel';
+import { QueryClient, useQueryClient } from '@tanstack/react-query';
 import { Crown, PlusSquareIcon } from 'lucide-react';
 import { UserRoundPlus } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +9,13 @@ function ResizablePanelOne({ data }) {
     const { channelModalOpen, setChannelModalOpen } = useCreateChannelModal();
     const { toast } = useToast();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
     function ModalOpen(){
         setChannelModalOpen(true);
     }
     function ChannelOpen(channelId){
         navigate(`/home/workspace/${data?.data?._id}/Channel/${channelId}`);
+        queryClient.invalidateQueries(['PaginatedMessage']);
     }
     function InviteLink(){
         console.log(window.location.href+'/join/'+data?.data?.joincode);

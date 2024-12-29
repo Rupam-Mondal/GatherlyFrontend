@@ -6,12 +6,20 @@ import UpdateChannelModal from "./UpdateChannelModal";
 import { useParams } from "react-router-dom";
 import MessageRenderer from "../atoms/MessageRenderer/MessageRenderer";
 import { useState } from "react";
+import useGetMessageChannelId from "@/hooks/ChannelHooks/useGetMessageChannelId";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
     const { isPending,isSuccess:updateChannelSuccess,error:UpdateChannelError,mutateAsync:UpdateChannel } = useUpdateChannel();
     const { workspaceId, channelId } = useParams();
     const [value, setValue] = useState(null);
+    const ChannelObject = {
+        workspaceId: workspaceId,
+        channelId: channelId,
+        offset: 0,
+        pageSize: 15
+    }
+    const { isFetching: messageFetch, isSuccess: messageSuccess, error: messageError, data: messageData } = useGetMessageChannelId(ChannelObject);
     async function UpdateHandler(){
         setUpdateModalOpen(true);
     }
@@ -35,7 +43,11 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                 </div>
 
                 <div className="flex-1">
-                    <MessageRenderer value={value}/>
+                    {
+                        data?.data?.messages.map((v , i) => (
+                            <MessageRenderer value={v.body} />
+                        ))
+                    }
                 </div>
                 <div><ChatBox
                     value={value}
