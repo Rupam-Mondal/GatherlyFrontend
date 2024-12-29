@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useParams } from "react-router-dom";
 import useSocket from "@/hooks/useSocket";
 
-function Editor() {
+function Editor({value , setValue}) {
     const editorRef = useRef(null);
     const quillInstance = useRef(null);
     const {auth} = useAuth();
@@ -20,6 +20,7 @@ function Editor() {
             senderId: auth.user.id,
             channelId: channelId
         };
+        setValue(messageObject);
         socket.emit('newMessage' , Object , (data) => {
             console.log("message sent successfully" , data);
         });
