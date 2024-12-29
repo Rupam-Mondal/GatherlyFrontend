@@ -5,6 +5,7 @@ import { CreateChannelContextProvider } from "./CreateChannelContext";
 import { JoinworkspaceProvider } from "./JoinworkspaceModal";
 import { UpdateContextProvider } from "./UpdateChannelContext";
 import { SocketContextProvider } from "./SocketContext";
+import { MessageContextProvider } from "./MessageContext";
 
 export const AppcontextProvider = CombineContext(
     AuthContextProvider,
@@ -12,5 +13,6 @@ export const AppcontextProvider = CombineContext(
     CreateChannelContextProvider,
     JoinworkspaceProvider,
     UpdateContextProvider,
-    SocketContextProvider
+    SocketContextProvider,
+    MessageContextProvider
 );
