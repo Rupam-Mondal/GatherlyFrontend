@@ -44,3 +44,19 @@ export async function UpdateChannelName(UpdateChannelObject){
         return null;
     }
 }
+
+export async function getAllMessagesOfChannel(channelObject){
+    try {
+        const Token = localStorage.getItem('Token');
+        const response = await axiosInstance.get('/message/getMessages' , {
+            headers:{
+                'x-access-token':Token
+            },
+            params:channelObject
+        });
+        return response.data;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
