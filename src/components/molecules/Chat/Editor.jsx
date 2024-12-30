@@ -18,8 +18,11 @@ function Editor({value , setValue}) {
         const messageObject = JSON.stringify(quillInstance.current.getContents());
         const Object = {
             body:messageObject,
-            senderId: auth.user.id,
-            channelId: channelId
+            senderId: {
+                avatar: auth?.user?.avatar,
+                username: auth?.user?.username
+            },
+            channelId: channelId,
         };
         setValue(messageObject);
         socket.emit('newMessage' , Object , (data) => {

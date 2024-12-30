@@ -13,6 +13,6 @@ export const AppcontextProvider = CombineContext(
     CreateChannelContextProvider,
     JoinworkspaceProvider,
     UpdateContextProvider,
-    SocketContextProvider,
-    MessageContextProvider
+    MessageContextProvider,
+    SocketContextProvider
 );
