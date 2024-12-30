@@ -5,7 +5,7 @@ import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
 import UpdateChannelModal from "./UpdateChannelModal";
 import { useParams } from "react-router-dom";
 import MessageRenderer from "../atoms/MessageRenderer/MessageRenderer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useGetMessageChannelId from "@/hooks/ChannelHooks/useGetMessageChannelId";
 import Message from "./Message/Message";
 import useMessageContext from "@/hooks/useMessageContext";
@@ -24,19 +24,35 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
         pageSize: 15
     }
     const { isFetching: messageFetch, isSuccess: messageSuccess, error: messageError, data: messageData } = useGetMessageChannelId(ChannelObject);
+    const messageContainerRef = useRef(null);
     async function UpdateHandler(){
         setUpdateModalOpen(true);
     }
     const queryClient = useQueryClient();
     useEffect(() => {
         queryClient.invalidateQueries(['PaginatedMessage'])
-    } , [channelId])
+    } , [channelId]);
+
+    useEffect(() => {
+        if (messageContainerRef.current) {
+            messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+        }
+    })
+    useEffect(() => {
+        if(messageContainerRef.current){
+            messageContainerRef.current.scrollTop = messageContainerRef.current.scrollHeight;
+        }
+    } , [messageList])
     useEffect(() => {
             setMessageList(messageData?.data);
     }, [messageData , messageSuccess , channelId , setMessageList]);
+
+
     useEffect(() => {
         setMessageList([]);
-    } , [channelId])
+    } , [channelId]);
+
+
     if(isFetching){
         return (
             <div className="h-full w-full flex justify-center items-center">
@@ -56,7 +72,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                     </span>
                 </div>
 
-                <div className="flex-1 overflow-y-scroll">
+                <div className="flex-1 overflow-y-scroll" ref={messageContainerRef}>
                     {
                         messageList?.reverse().map((v , i) => (
                             <Message data={v} key={i}/>
