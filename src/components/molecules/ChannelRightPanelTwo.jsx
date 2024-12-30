@@ -27,8 +27,8 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
         setUpdateModalOpen(true);
     }
     useEffect(() => {
-        setMessageList([messageData?.data]);
-    }, [messageSuccess , messageData]);
+        setMessageList(messageData?.data);
+    }, [messageData , messageSuccess , channelId , setMessageList]);
     if(isFetching){
         return (
             <div className="h-full w-full flex justify-center items-center">
@@ -50,7 +50,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
 
                 <div className="flex-1 overflow-y-auto">
                     {
-                        messageData?.data?.reverse().map((v , i) => (
+                        messageList?.reverse().map((v , i) => (
                             <Message data={v} key={i}/>
                         ))
                     }
