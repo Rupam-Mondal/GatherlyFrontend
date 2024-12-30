@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { useCreateWorkspace } from "@/hooks/useCreateworkspace";
 import { useCreateWorkspaceApi } from "@/hooks/Workspace/useCreateworkspaceApi";
+import { Loader } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,8 +20,8 @@ export function Modals() {
 
     const handleSubmit = async () => {
         const workspaceObject = {
-            name:workspaceName,
-            description:workspaceDescription
+            name: workspaceName,
+            description: workspaceDescription
         }
         const data = await workspacecreation(workspaceObject);
         setOpenBox(false);
@@ -68,12 +69,25 @@ export function Modals() {
                     >
                         Cancel
                     </button>
-                    <button
-                        className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-                        onClick={handleSubmit}
-                    >
-                        Create
-                    </button>
+                    <div>
+                        {
+                            isPending ? (
+                                <button
+                                    className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                                    onClick={handleSubmit}
+                                >
+                                    <Loader className="animate-spin"/>
+                                </button>
+                            ) : (
+                                <button
+                                    className="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+                                    onClick={handleSubmit}
+                                >
+                                    Create
+                                </button>
+                            )
+                        }
+                    </div>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
