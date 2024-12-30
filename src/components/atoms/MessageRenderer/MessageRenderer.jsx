@@ -11,7 +11,6 @@ export default function MessageRenderer({value}){
         quill.disable();
         const content = JSON.parse(value);
         quill.setContents(content);
-        console.log(quill.root.innerHTML);
         rendererref.current.innerHTML = quill.root.innerHTML
     } , [value]);
     return (

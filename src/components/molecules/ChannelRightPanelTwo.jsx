@@ -5,15 +5,17 @@ import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
 import UpdateChannelModal from "./UpdateChannelModal";
 import { useParams } from "react-router-dom";
 import MessageRenderer from "../atoms/MessageRenderer/MessageRenderer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetMessageChannelId from "@/hooks/ChannelHooks/useGetMessageChannelId";
 import Message from "./Message/Message";
+import useMessageContext from "@/hooks/useMessageContext";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
     const { isPending,isSuccess:updateChannelSuccess,error:UpdateChannelError,mutateAsync:UpdateChannel } = useUpdateChannel();
     const { workspaceId, channelId } = useParams();
     const [value, setValue] = useState(null);
+    const { messageList, setMessageList } = useMessageContext();
     const ChannelObject = {
         workspaceId: workspaceId,
         channelId: channelId,
@@ -24,13 +26,16 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     async function UpdateHandler(){
         setUpdateModalOpen(true);
     }
-    // if(isFetching){
-    //     return (
-    //         <div className="h-full w-full flex justify-center items-center">
-    //             <Loader size={40} className="animate-spin text-zinc-500"/>
-    //         </div>
-    //     )
-    // }
+    useEffect(() => {
+        setMessageList([messageData?.data]);
+    }, [messageSuccess , messageData]);
+    if(isFetching){
+        return (
+            <div className="h-full w-full flex justify-center items-center">
+                <Loader size={40} className="animate-spin text-zinc-500"/>
+            </div>
+        )
+    }
     return (
         <>
             <div className="h-full w-full flex flex-col">
@@ -45,7 +50,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
 
                 <div className="flex-1 overflow-y-auto">
                     {
-                        data?.data?.messages.reverse().map((v , i) => (
+                        messageData?.data?.reverse().map((v , i) => (
                             <Message data={v} key={i}/>
                         ))
                     }
