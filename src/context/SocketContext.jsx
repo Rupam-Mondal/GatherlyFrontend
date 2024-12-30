@@ -10,7 +10,7 @@ export function SocketContextProvider({children}){
     const socket = io(import.meta.env.VITE_WEB_SOCKET_URL);
     socket.on('messageToAll' , (data) => {
         console.log("" , data);
-        setMessageList([...messageList , data])
+        setMessageList([data , ...messageList])
     })
     async function joinchannel(channelId) {
         socket.emit('joinchannel' , {channelId:channelId} , (data) => {

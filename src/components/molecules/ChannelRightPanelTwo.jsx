@@ -56,7 +56,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
                     </span>
                 </div>
 
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex-1 overflow-y-scroll">
                     {
                         messageList?.reverse().map((v , i) => (
                             <Message data={v} key={i}/>

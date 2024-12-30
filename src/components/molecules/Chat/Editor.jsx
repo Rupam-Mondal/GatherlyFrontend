@@ -24,6 +24,7 @@ function Editor({value , setValue}) {
                 username: auth?.user?.username
             },
             channelId: channelId,
+            createdAt: new Date().toISOString()
         };
         setValue(messageObject);
         socket.emit('newMessage' , Object , (data) => {
