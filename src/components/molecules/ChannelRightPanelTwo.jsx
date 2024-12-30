@@ -1,4 +1,4 @@
-import { Edit, Loader } from "lucide-react";
+import { Edit, Loader, User } from "lucide-react";
 import ChatBox from "./Chat/Chatbox";
 import useUpdateChannel from "@/hooks/ChannelHooks/useUpdateChannel";
 import useChannelUpdateModal from "@/hooks/useUpdateChannelModal";
@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import useGetMessageChannelId from "@/hooks/ChannelHooks/useGetMessageChannelId";
 import Message from "./Message/Message";
 import useMessageContext from "@/hooks/useMessageContext";
+import { useQueryClient } from "@tanstack/react-query";
 
 function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     const { updateModalOpen, setUpdateModalOpen, updateInput, setUpdateInput } = useChannelUpdateModal();
@@ -26,9 +27,16 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     async function UpdateHandler(){
         setUpdateModalOpen(true);
     }
+    const queryClient = useQueryClient();
     useEffect(() => {
-        setMessageList(messageData?.data);
+        queryClient.invalidateQueries(['PaginatedMessage'])
+    } , [channelId])
+    useEffect(() => {
+            setMessageList(messageData?.data);
     }, [messageData , messageSuccess , channelId , setMessageList]);
+    useEffect(() => {
+        setMessageList([]);
+    } , [channelId])
     if(isFetching){
         return (
             <div className="h-full w-full flex justify-center items-center">

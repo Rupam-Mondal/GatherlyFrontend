@@ -14,8 +14,9 @@ function ResizablePanelOne({ data }) {
         setChannelModalOpen(true);
     }
     function ChannelOpen(channelId){
-        navigate(`/home/workspace/${data?.data?._id}/Channel/${channelId}`);
+        queryClient.invalidateQueries([`channel-${channelId}`])
         queryClient.invalidateQueries(['PaginatedMessage']);
+        navigate(`/home/workspace/${data?.data?._id}/Channel/${channelId}`);
     }
     function InviteLink(){
         console.log(window.location.href+'/join/'+data?.data?.joincode);

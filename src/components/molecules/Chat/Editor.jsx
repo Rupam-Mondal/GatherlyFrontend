@@ -19,6 +19,7 @@ function Editor({value , setValue}) {
         const Object = {
             body:messageObject,
             senderId: {
+                id:auth?.user?.id,
                 avatar: auth?.user?.avatar,
                 username: auth?.user?.username
             },
