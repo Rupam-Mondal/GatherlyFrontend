@@ -1,4 +1,7 @@
 # Gatherly
+- [Live link](https://gatherly-frontend-9x1n.vercel.app/home)  ( Initial loading can take some time because I deployed my code in render free tier. It take 50 sec for first request if the code base inactive for so long)
+
+
 
 Gatherly is a full-stack project built with React for the frontend and Express for the backend. This application allows users to create and join events, manage event details, and interact with other participants in real-time using WebSockets. The backend handles user authentication, event management, and real-time communication.
 
