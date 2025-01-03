@@ -30,6 +30,7 @@ function ChannelRightPanel({ isFetching, isSuccess, error, data }){
     }
     const queryClient = useQueryClient();
     useEffect(() => {
+        setMessageList([]);
         queryClient.invalidateQueries(['PaginatedMessage'])
     } , [channelId]);
 
